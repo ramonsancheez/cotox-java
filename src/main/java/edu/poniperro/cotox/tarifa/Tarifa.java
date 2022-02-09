@@ -8,13 +8,14 @@ public class Tarifa {
     final static double COSTE_MINIMO = 5.0;
     final static byte COMISION = 20;
 
-    public double getCosteDistancia(double distancia) {
+    public static double getCosteDistancia(double distancia) {
         return distancia * COSTE_MILLA;
     }
-    public double getCosteTiempo(int minutos) {
+    public static double getCosteTiempo(int minutos) {
         return minutos * COSTE_MINUTO;
     }
-    public double getCosteTotalEsperado(Carrera carrera) {
-        double costeTotal = getCosteDistancia() + getCosteTiempo(carrera.getTiempo())
+    public static double getCosteTotalEsperado(Carrera carrera) {
+        double costeTotal = getCosteDistancia(carrera.getDistancia()) + getCosteTiempo(carrera.getTiempoEsperado());
+        return costeTotal > COSTE_MINIMO ? costeTotal : COSTE_MINIMO;
     }
 }
